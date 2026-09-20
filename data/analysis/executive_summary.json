@@ -1,0 +1,12 @@
+{
+  "customers": 5000,
+  "deposit_balance": 522381122.67,
+  "loan_outstanding": 902482733.03,
+  "dpd30_exposure_ratio_pct": 15.17,
+  "dpd90_exposure_ratio_pct": 5.93,
+  "digital_transaction_share_pct": 62.21,
+  "high_risk_transaction_rate_pct": 0.02,
+  "churn_rate_pct": 5.32,
+  "collection_efficiency_pct": 96.09,
+  "investigation_precision_pct": 16.67
+}

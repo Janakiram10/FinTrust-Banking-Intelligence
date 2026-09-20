@@ -116,6 +116,35 @@ def build(scale: str) -> dict[str, pd.DataFrame]:
         "loan_status": np.select([dpd>=90,dpd>=30],["Non-performing","Delinquent"],default="Current"),
     })
 
+    payment_rows = []
+    for row in loans.itertuples(index=False):
+        observed = int(min(18, max(3, (snapshot - pd.Timestamp(row.origination_date)).days // 30)))
+        scheduled = row.principal_amount / max(row.term_months, 1)
+        for month_no in range(1, observed + 1):
+            due_date = pd.Timestamp(row.origination_date) + pd.DateOffset(months=month_no)
+            late_pressure = row.days_past_due / 120
+            paid_ratio = float(np.clip(rng.normal(1 - late_pressure * .45, .08), 0, 1.15))
+            payment_rows.append((row.loan_id, month_no, due_date.date(), round(scheduled, 2), round(scheduled * paid_ratio, 2), int(rng.random() < late_pressure)))
+    loan_payments = pd.DataFrame(payment_rows, columns=["loan_id","instalment_number","due_date","scheduled_amount","paid_amount","was_late"])
+    loan_payments.insert(0, "payment_id", ids("LP", len(loan_payments), 10))
+
+    balance_rows = []
+    for month_end in pd.date_range(snapshot - pd.DateOffset(months=11), snapshot, freq="ME"):
+        values = np.maximum(0, accounts.current_balance.to_numpy() * (1 + .035*np.sin(month_end.month/12*2*np.pi)) * rng.normal(1,.035,len(accounts)))
+        balance_rows.append(pd.DataFrame({"snapshot_date":month_end.date(),"account_id":accounts.account_id,"ending_balance":values.round(2)}))
+    monthly_balances = pd.concat(balance_rows, ignore_index=True)
+    monthly_balances.insert(0, "balance_snapshot_id", ids("BS", len(monthly_balances), 10))
+
+    risky = transactions.loc[transactions.is_high_risk.eq(1), ["transaction_id","risk_score","amount"]].copy()
+    sample_n = min(len(risky), max(25, int(n_transactions*.004)))
+    risky = risky.sample(sample_n, random_state=SEED)
+    confirmed_p = np.clip((risky.risk_score-.65)*1.5 + (risky.amount>200_000)*.15, .08, .82)
+    fraud_cases = pd.DataFrame({"case_id":ids("FC",sample_n),"transaction_id":risky.transaction_id.to_numpy(),
+        "opened_date":(snapshot-pd.to_timedelta(rng.integers(0,365,sample_n),unit="D")).date,
+        "case_status":rng.choice(["Closed","Under Review"],sample_n,p=[.83,.17]),
+        "confirmed_fraud":rng.binomial(1,confirmed_p),"loss_amount":(risky.amount.to_numpy()*rng.uniform(.15,1,sample_n)).round(2)})
+    fraud_cases.loc[fraud_cases.confirmed_fraud.eq(0),"loss_amount"] = 0
+
     cards = pd.DataFrame({
         "card_id": ids("CD", int(n_customers*.58)),
         "customer_id": rng.choice(customers.customer_id, int(n_customers*.58), replace=False),
@@ -134,7 +163,9 @@ def build(scale: str) -> dict[str, pd.DataFrame]:
         "resolution_hours": np.clip(rng.gamma(2.2,8,int(n_customers*.9)),.1,120).round(2),
         "satisfaction_score": rng.choice([1,2,3,4,5], int(n_customers*.9), p=[.04,.08,.18,.38,.32]),
     })
-    return {"branches":branches,"customers":customers,"accounts":accounts,"transactions":transactions,"loans":loans,"cards":cards,"interactions":interactions}
+    return {"branches":branches,"customers":customers,"accounts":accounts,"monthly_balances":monthly_balances,
+            "transactions":transactions,"loans":loans,"loan_payments":loan_payments,"cards":cards,
+            "interactions":interactions,"fraud_cases":fraud_cases}
 
 
 def main() -> None:
@@ -151,4 +182,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

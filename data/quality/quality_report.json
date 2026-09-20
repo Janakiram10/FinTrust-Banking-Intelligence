@@ -32,6 +32,16 @@
       "detail": ""
     },
     {
+      "check": "monthly_balances.primary_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "monthly_balances.primary_key_not_null",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "check": "transactions.primary_key_unique",
       "passed": true,
       "detail": ""
@@ -48,6 +58,16 @@
     },
     {
       "check": "loans.primary_key_not_null",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "loan_payments.primary_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "loan_payments.primary_key_not_null",
       "passed": true,
       "detail": ""
     },
@@ -72,6 +92,16 @@
       "detail": ""
     },
     {
+      "check": "fraud_cases.primary_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fraud_cases.primary_key_not_null",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "check": "accounts.customer_fk",
       "passed": true,
       "detail": ""
@@ -82,7 +112,22 @@
       "detail": ""
     },
     {
+      "check": "monthly_balances.account_fk",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "check": "loans.customer_fk",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "loan_payments.loan_fk",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fraud_cases.transaction_fk",
       "passed": true,
       "detail": ""
     },
@@ -117,6 +162,21 @@
       "detail": ""
     },
     {
+      "check": "monthly_balances.nonnegative",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "loan_payments.nonnegative",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fraud.loss_only_if_confirmed",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "check": "customers.digital_score_range",
       "passed": true,
       "detail": ""
@@ -126,9 +186,12 @@
     "branches": 24,
     "customers": 5000,
     "accounts": 6899,
+    "monthly_balances": 82788,
     "transactions": 120000,
     "loans": 2100,
+    "loan_payments": 33740,
     "cards": 2900,
-    "interactions": 4500
+    "interactions": 4500,
+    "fraud_cases": 18
   }
 }
