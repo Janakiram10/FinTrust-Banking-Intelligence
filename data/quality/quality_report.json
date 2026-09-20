@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "branches.primary_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "branches.primary_key_not_null",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "customers.primary_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "customers.primary_key_not_null",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "accounts.primary_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "accounts.primary_key_not_null",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "transactions.primary_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "transactions.primary_key_not_null",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "loans.primary_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "loans.primary_key_not_null",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "cards.primary_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "cards.primary_key_not_null",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "interactions.primary_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "interactions.primary_key_not_null",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "accounts.customer_fk",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "transactions.account_fk",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "loans.customer_fk",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "cards.customer_fk",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "interactions.customer_fk",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "accounts.balance_nonnegative",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "transactions.amount_positive",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "transactions.risk_score_range",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "loans.outstanding_lte_principal",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "customers.digital_score_range",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "row_counts": {
+    "branches": 24,
+    "customers": 5000,
+    "accounts": 6899,
+    "transactions": 120000,
+    "loans": 2100,
+    "cards": 2900,
+    "interactions": 4500
+  }
+}

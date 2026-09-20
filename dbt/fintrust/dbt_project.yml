@@ -1,0 +1,12 @@
+name: fintrust
+version: '1.0.0'
+config-version: 2
+profile: fintrust
+model-paths: ["models"]
+models:
+  fintrust:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+

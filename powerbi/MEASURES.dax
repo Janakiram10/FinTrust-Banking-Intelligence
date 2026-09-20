@@ -1,0 +1,26 @@
+Total Deposit Balance =
+CALCULATE(SUM(accounts[current_balance]), accounts[status] = "Active")
+
+Loan Outstanding = SUM(loans[outstanding_amount])
+
+30 Plus DPD Ratio =
+DIVIDE(CALCULATE([Loan Outstanding], loans[days_past_due] >= 30), [Loan Outstanding])
+
+90 Plus DPD Ratio =
+DIVIDE(CALCULATE([Loan Outstanding], loans[days_past_due] >= 90), [Loan Outstanding])
+
+Completed Transactions =
+CALCULATE(COUNTROWS(transactions), transactions[status] = "Completed")
+
+Digital Transaction Share =
+DIVIDE(
+  CALCULATE([Completed Transactions], transactions[channel] IN {"UPI","Mobile Banking","Internet Banking"}),
+  [Completed Transactions]
+)
+
+High Risk Transaction Rate =
+DIVIDE(CALCULATE([Completed Transactions], transactions[is_high_risk] = 1), [Completed Transactions])
+
+Customer Churn Rate =
+DIVIDE(CALCULATE(DISTINCTCOUNT(customers[customer_id]), customers[is_churned] = 1), DISTINCTCOUNT(customers[customer_id]))
+
