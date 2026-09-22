@@ -52,33 +52,35 @@ p.add_run("Hyderabad, Telangana  |  +91 9866804339  |  janakiram.palla01@gmail.c
 hyperlink(p,"GitHub","https://github.com/Janakiram10")
 
 heading(doc,"Professional Summary")
-p=doc.add_paragraph("Data Analyst candidate with 2+ years of experience in technical operations, structured-data validation, quality checks, reporting, and issue analysis. Uses SQL, Python, Pandas, Excel, PostgreSQL, Power BI and DAX to clean data, validate KPIs, build dimensional models and create decision-focused dashboards. Portfolio work covers banking and healthcare analytics, including locally executed PySpark, Delta Lake and dbt pipelines.")
+p=doc.add_paragraph("Data Analyst with 2+ years of experience working with structured datasets, data validation, quality analysis, reporting and geospatial data workflows. Skilled in SQL, Python, Pandas, Excel, Power BI, PostgreSQL, data cleaning, KPI analysis, visualization and dimensional modeling. Built end-to-end banking and healthcare analytics portfolio solutions combining business analysis, data modeling, automated validation and interactive BI dashboards.")
 p.paragraph_format.space_after=Pt(1); p.paragraph_format.line_spacing=1.04; p.runs[0].font.size=Pt(8.6)
 
 heading(doc,"Technical Skills")
 p=doc.add_paragraph(); p.paragraph_format.space_after=Pt(1); p.paragraph_format.line_spacing=1.0
-items=[("Analytics","SQL, Python, Pandas, NumPy, Excel, data cleaning, validation, EDA, KPI reporting, business analysis"),("BI and databases","Power BI, DAX, Power Query, dimensional modeling, PostgreSQL, DuckDB, data visualization"),("Modern analytics","PySpark, Apache Spark, Delta Lake, dbt, medallion architecture, Airflow DAG design"),("Tools","Git, GitHub, ArcGIS Pro, Google Earth Pro, KML/KMZ, Microsoft 365")]
+items=[("Data Analytics","SQL, Python, Pandas, NumPy, Excel, data cleaning, data validation, EDA, KPI analysis, business analysis"),("Business Intelligence","Power BI, DAX, Power Query, data visualization, dimensional modeling"),("Databases","PostgreSQL"),("Modern Analytics","PySpark, Apache Spark, Delta Lake, dbt, medallion architecture, Airflow DAG design"),("Tools","Git, GitHub, ArcGIS Pro, Google Earth Pro, KML/KMZ")]
 for i,(a,b) in enumerate(items):
     rr=p.add_run(f"{a}: "); rr.bold=True; rr.font.size=Pt(8.35); rr=p.add_run(b+("  |  " if i<len(items)-1 else "")); rr.font.size=Pt(8.35)
 
 heading(doc,"Professional Experience")
-role(doc,"Sr. Associate - Customer Support","Tech Mahindra","Mar 2026 - Present")
-bullet(doc,"Validate structured mapping and operational records against defined business rules, document discrepancies, and maintain accurate service records within SLA timelines.")
-bullet(doc,"Investigate recurring data and service issues, coordinate escalations, and communicate resolution status clearly to internal stakeholders.")
+role(doc,"Sr. Associate - Customer Support (Technical Support)","Tech Mahindra","Mar 2026 - Present")
+bullet(doc,"Analyze and validate structured geospatial and map data against defined mapping specifications and business rules, identifying inconsistencies and maintaining data accuracy.")
+bullet(doc,"Perform quality checks across road-network features, including lanes, intersections, crosswalks, bike lanes and parking areas, to ensure completeness and consistency.")
+bullet(doc,"Investigate data discrepancies and edge cases, document findings, and coordinate corrections through established quality workflows.")
 role(doc,"Technical Support Engineer","Blue Dome Technologies","Jan 2024 - Dec 2025")
-bullet(doc,"Performed data extraction, validation and quality checks for road-infrastructure, mapping and asset-analysis workflows using Excel, GIS tools and structured datasets.")
-bullet(doc,"Reconciled asset attributes, GPS/KML information and source imagery; identified missing, duplicate and inconsistent records for correction and reporting.")
-bullet(doc,"Maintained analytical deliverables, issue records and SOPs while coordinating with technical, GIS and operations teams to resolve data-quality problems.")
+bullet(doc,"Extracted, cleaned, validated and analyzed structured roadway and infrastructure datasets using Excel, Python and GIS tools, identifying missing, duplicate and inconsistent records.")
+bullet(doc,"Processed and reconciled GPS/KML data, spatial attributes and source imagery to maintain accurate asset-level datasets and analytical deliverables.")
+bullet(doc,"Prepared structured Excel/CSV and geospatial outputs for downstream analysis and reporting while coordinating resolution of data-quality issues.")
 
 heading(doc,"Selected Projects")
 role(doc,"FinTrust Banking Intelligence","Portfolio Project","2026")
-bullet(doc,"Built a six-page Power BI banking dashboard covering executive performance, deposits, transactions, credit risk, fraud, customers and branches; validated 108 report elements and ten headline KPIs.")
-bullet(doc,"Implemented a local Bronze-Silver-Gold lakehouse across 257,969 records using PySpark and Delta Lake, with checksum-based incremental ingestion and partitioned transaction processing.")
-bullet(doc,"Built 11 dbt models with 12 passing tests, DuckDB serving tables, quality gates, monitoring and an eight-task Airflow DAG design; 8 automated repository tests passed.")
+bullet(doc,"Analyzed 5,000 customers and 120,000 transactions across deposits, lending, fraud, credit risk, collections and churn using SQL, Python and reconciled KPI logic.")
+bullet(doc,"Built a six-page Power BI dashboard with a dimensional model, DAX measures and decision-focused reporting; validated 108 report elements and ten headline KPIs.")
+bullet(doc,"Implemented a local Bronze-Silver-Gold pipeline using PySpark and Delta Lake, with 11 dbt models, 12 passing dbt tests, automated quality checks and an eight-task Airflow DAG design.")
 p=doc.add_paragraph(); p.paragraph_format.space_after=Pt(1); p.add_run("Repository: ").bold=True; hyperlink(p,"github.com/Janakiram10/FinTrust-Banking-Intelligence","https://github.com/Janakiram10/FinTrust-Banking-Intelligence")
 role(doc,"MediCore Healthcare Analytics","Portfolio Project","2026")
 bullet(doc,"Analyzed synthetic multi-hospital operations covering 500,000 appointments and 300,000 encounters using PostgreSQL, SQL, Python and Pandas.")
-bullet(doc,"Built validated Power BI and Plotly Dash reporting for revenue, collections, patient flow, no-shows, satisfaction, wait times and readmission monitoring.")
+bullet(doc,"Validated healthcare KPIs for revenue, collections, patient flow, no-shows, wait times, satisfaction and readmissions, translating results into business insights.")
+bullet(doc,"Built interactive Power BI and Plotly Dash reporting for operational and financial performance analysis.")
 p=doc.add_paragraph(); p.paragraph_format.space_after=Pt(1); p.add_run("Repository: ").bold=True; hyperlink(p,"github.com/Janakiram10/MediCore-Healthcare-Analytics","https://github.com/Janakiram10/MediCore-Healthcare-Analytics")
 
 heading(doc,"Education and Certifications")

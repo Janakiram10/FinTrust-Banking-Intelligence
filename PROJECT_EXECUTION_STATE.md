@@ -69,6 +69,12 @@ Last updated: 2026-09-22
 - LinkedIn profile and launch post: complete locally; manual authenticated paste required.
 - Dashboard PNG/PDF assets: manual Power BI Desktop export required; exact instructions are recorded above.
 
+## Data Analyst positioning correction
+
+- Regenerated the resume with direct Data Analyst positioning, Data Analyst-first skills, business-analysis-first project bullets and truthful data/geospatial experience language under the supported official job titles.
+- Updated the LinkedIn and GitHub profile copy to lead with SQL, Python, Excel, Power BI, data visualization, data modeling and business analysis.
+- Updated the FinTrust README opening so business analytics and the Power BI dashboard lead, with PySpark, Delta Lake, dbt and Airflow presented as additional technical depth.
+
 ## Tier-3 completed locally
 
 - Loaded 257,969 rows into ten genuine Bronze Delta tables with source, batch and ingestion metadata.

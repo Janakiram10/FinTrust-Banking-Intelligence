@@ -2,9 +2,9 @@
 
 ## Modern Banking Data Analytics and Business Intelligence Portfolio
 
-**SQL | Python | Pandas | Power BI | DAX | Data Modeling | PySpark | Delta Lake | dbt | Airflow**
+**SQL | Python | Excel | Power BI | DAX | Data Modeling | Data Visualization | Business Analysis**
 
-FinTrust turns customer, account, transaction, lending, collection, fraud and branch data into a validated six-page management dashboard and a locally executed modern lakehouse pipeline.
+FinTrust is a Data Analyst portfolio project that turns customer, account, transaction, lending, collection, fraud and branch data into validated business KPIs and a six-page Power BI management dashboard. A locally executed PySpark, Delta Lake and dbt pipeline provides additional modern analytics depth.
 
 **Portfolio highlights:** 5,000 customers | 120,000 transactions | ₹522.38M deposits | ₹902.48M loans | 108 Power BI report elements | 8 automated tests | 11 dbt models | 12 dbt tests
 
