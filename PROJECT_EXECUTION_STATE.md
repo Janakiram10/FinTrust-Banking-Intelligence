@@ -61,6 +61,14 @@ Last updated: 2026-09-22
 - LinkedIn launch post: `docs/LINKEDIN_POST.md`
 - Power BI export procedure: `assets/dashboard/EXPORT_INSTRUCTIONS.md`
 
+## Phase 1 publication status
+
+- Recruiter-facing asset commit: `7116d812b287fba6e6e16c2a79d021b641714c75`
+- GitHub project repository: pushed to `origin/main` and verified on the public repository.
+- GitHub profile README: complete locally; manual profile-repository publication required.
+- LinkedIn profile and launch post: complete locally; manual authenticated paste required.
+- Dashboard PNG/PDF assets: manual Power BI Desktop export required; exact instructions are recorded above.
+
 ## Tier-3 completed locally
 
 - Loaded 257,969 rows into ten genuine Bronze Delta tables with source, batch and ingestion metadata.
