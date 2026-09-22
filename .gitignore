@@ -12,6 +12,7 @@ dbt_packages/
 **/.pbi/
 backups/
 .runtime/
+portfolio/resume/rendered/
 lakehouse/landing/
 lakehouse/bronze/
 lakehouse/silver/

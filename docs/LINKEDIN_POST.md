@@ -1,23 +1,19 @@
-# LinkedIn Post Draft
+# FinTrust LinkedIn Launch Post
 
-I’ve completed **FinTrust Banking Intelligence Platform**, an end-to-end retail-banking analytics portfolio project built to go beyond a single-file dashboard.
+I have completed **FinTrust Banking Intelligence**, an end-to-end Data Analyst portfolio project focused on customer, transaction, fraud, credit-risk, collection, churn and branch-performance decisions.
 
-The platform integrates synthetic customer, account, transaction, loan, card, branch and service data to answer practical management questions across profitability, credit risk, digital adoption, churn and transaction-risk monitoring.
+The project combines:
 
-What I implemented:
+- SQL and Python analysis with independent KPI validation
+- A six-page Power BI management dashboard
+- A locally executed Bronze-Silver-Gold pipeline using PySpark and Delta Lake
+- 11 dbt models with 12 passing dbt tests
+- Incremental ingestion, data-quality gates and pipeline monitoring
+- 8 passing automated repository tests
 
-• Deterministic multi-table data generation with no real customer data  
-• Python-based validation and automated data-quality tests  
-• Dimensional warehouse design and analytical SQL  
-• dbt staging and mart models with tests  
-• PySpark and Delta Lake Bronze/Silver/Gold reference pipelines  
-• Airflow orchestration  
-• Power BI semantic measures and a six-page dashboard design  
-• Azure Data Lake, Databricks and Synapse deployment architecture
+The modern analytics layer is locally validated and designed to be cloud-portable. I have not represented it as a live production Azure or Databricks deployment.
 
-The key lesson was that a credible analytics project is not defined by the number of tools used. It is defined by consistent business definitions, traceable transformations, tested data and honest communication of limitations.
+Repository: https://github.com/Janakiram10/FinTrust-Banking-Intelligence
 
-All data is synthetic. Expected-loss and high-risk transaction outputs are analytical proxies, not regulatory ECL calculations or confirmed fraud classifications.
-
-#DataAnalytics #BankingAnalytics #PowerBI #SQL #Python #Azure #Databricks #PySpark #dbt #Airflow
+#DataAnalytics #DataAnalyst #PowerBI #SQL #Python #PySpark #dbt #BusinessIntelligence
 

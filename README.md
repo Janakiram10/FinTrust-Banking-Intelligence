@@ -1,10 +1,18 @@
-# FinTrust Banking Intelligence Platform
+# FinTrust Banking Intelligence
 
-An end-to-end, synthetic retail-banking analytics platform designed to answer a bank leadership team's hardest recurring questions: where profit is created, which loans are deteriorating, which customers are likely to leave, where suspicious transaction patterns are emerging, and which branches need intervention.
+## Modern Banking Data Analytics and Business Intelligence Portfolio
+
+**SQL | Python | Pandas | Power BI | DAX | Data Modeling | PySpark | Delta Lake | dbt | Airflow**
+
+FinTrust turns customer, account, transaction, lending, collection, fraud and branch data into a validated six-page management dashboard and a locally executed modern lakehouse pipeline.
+
+**Portfolio highlights:** 5,000 customers | 120,000 transactions | ₹522.38M deposits | ₹902.48M loans | 108 Power BI report elements | 8 automated tests | 11 dbt models | 12 dbt tests
+
+[Download the validated Power BI report](FinTrust_Banking_Intelligence_FINAL.pbix) | [Review execution evidence](documentation/TIER3_EXECUTION_EVIDENCE.md) | [Read the interview guide](documentation/TIER3_INTERVIEW_GUIDE.md)
 
 > Portfolio disclosure: FinTrust is fictional. All customers, accounts, transactions and outcomes are deterministically generated; no real personal or financial data is used.
 
-## Why this project is different
+## Executive Summary
 
 This is not a single CSV connected to a dashboard. It models five operational source domains, preserves event-level grain, applies data-quality controls, builds a dimensional warehouse, and exposes management-ready metrics through a governed semantic layer.
 
@@ -32,7 +40,7 @@ The executed local implementation uses an ADLS-style lake layout, genuine Delta 
 
 **Modern analytics engineering:** locally executed Azure-style data lake, PySpark 4, Delta Lake medallion processing, dbt dimensional models and tests, an Airflow DAG, DuckDB serving, incremental checkpoints, quality gates and JSONL monitoring. See [`documentation/TIER3_EXECUTION_EVIDENCE.md`](documentation/TIER3_EXECUTION_EVIDENCE.md) for claim-by-claim evidence.
 
-## Business scope
+## Business Problem and Objectives
 
 - Executive profitability and customer growth
 - Deposit portfolio and digital adoption
@@ -116,6 +124,42 @@ The repository includes the editable PBIP source and a validated, portable PBIX 
 - [`FinTrust_Banking_Intelligence_FINAL.pbix`](FinTrust_Banking_Intelligence_FINAL.pbix) - final six-page report
 - [`FinTrust_Banking_Intelligence.pbip`](FinTrust_Banking_Intelligence.pbip) - editable developer project
 - [`REPORT_GUIDE.md`](REPORT_GUIDE.md) - page intent, data grain, filter behavior and KPI interpretation
+
+### Dashboard pages
+
+| Page | Decision supported |
+|---|---|
+| Executive Overview | Monitor customers, deposits, lending exposure, delinquency and collections |
+| Credit Risk and Collections | Prioritize delinquent exposure and collection interventions |
+| Deposits and Transactions | Track funding trends, transaction channels and digital adoption |
+| Fraud and Investigations | Monitor suspicious activity, investigation precision and losses |
+| Customers and Digital | Understand customer segments, churn and digital engagement |
+| Branch Performance | Compare branch funding, lending risk, customer reach and operating cost |
+
+Recruiter-quality PNG and PDF exports require one final manual Power BI Desktop export because the automated desktop surface is unavailable. The validated PBIX and editable PBIP are included and unchanged.
+
+## Key Insights and Recommendations
+
+- ₹902.48M of outstanding loans requires risk monitoring; 15.17% is exposed at 30+ DPD and 5.93% at 90+ DPD.
+- Digital channels account for 62.21% of transactions, supporting continued mobile, internet and UPI adoption work.
+- Collection efficiency is 96.09%; teams can focus on the smaller delinquent population with the greatest exposure.
+- Customer churn is 5.32%, enabling targeted retention analysis by segment, geography and engagement.
+- Investigation precision is 16.67%, so fraud operations should refine alert prioritization while monitoring the very low high-risk transaction rate.
+
+## Validation and Testing
+
+- All ten Power BI benchmark KPIs reconciled with the Python analysis baseline.
+- Eight automated repository tests passed.
+- Eleven dbt models built and all twelve dbt tests passed.
+- A duplicate ingestion rerun wrote zero new rows and skipped all ten unchanged source files.
+- The Power BI PBIX reopened, refreshed and rendered across all six pages; synchronized region filtering was verified.
+
+## Limitations
+
+- The data is synthetic and supports portfolio demonstration rather than real banking decisions.
+- Azure ADLS and Databricks deployment require credentials and were not represented as live production infrastructure.
+- The Airflow DAG is implemented and structurally validated; an Airflow scheduler was not executed on this Windows host.
+- Power BI Service incremental refresh and scheduled refresh require an authenticated service workspace and licensing.
 - [`validation/source_validation.json`](validation/source_validation.json) - reproducible KPI and model checks
 - [`validation/DESKTOP_VALIDATION.md`](validation/DESKTOP_VALIDATION.md) - observed Desktop refresh, render and filter tests
 
