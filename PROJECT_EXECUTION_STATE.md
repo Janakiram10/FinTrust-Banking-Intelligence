@@ -35,7 +35,7 @@ Last updated: 2026-09-22
 
 ## Current task
 
-- Tier-3 local lakehouse implementation is complete and validated; final Git publication is in progress.
+- Tier-3 local lakehouse implementation is complete, validated and published to GitHub.
 
 ## Tier-3 completed locally
 
