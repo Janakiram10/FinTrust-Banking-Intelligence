@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "9c29942aa1b78802630c",
+    "creditrisk001",
+    "deposits001",
+    "fraud001",
+    "customers001",
+    "branches001"
+  ],
+  "activePageName": "9c29942aa1b78802630c"
+}

@@ -1,0 +1,148 @@
+table loans
+	lineageTag: 7c7d7884-725c-49a8-a32d-07820f72fb81
+
+	column loan_id
+		dataType: string
+		lineageTag: d34f639e-0785-418d-8aa4-e96001de2cdf
+		summarizeBy: none
+		sourceColumn: loan_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 0cbe5951-ca7c-4fe8-b351-109f4d136ec4
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column branch_id
+		dataType: string
+		lineageTag: 68351bc8-1511-4d25-b703-97ee88bf9a56
+		summarizeBy: none
+		sourceColumn: branch_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column loan_type
+		dataType: string
+		lineageTag: 1fe62ee3-56fb-40a8-9146-f102eac17218
+		summarizeBy: none
+		sourceColumn: loan_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column origination_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d6a33d20-deaa-44a6-8ffd-3a0e876a05c0
+		summarizeBy: none
+		sourceColumn: origination_date
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column principal_amount
+		dataType: double
+		lineageTag: 8dec01a8-f214-4e38-9a5f-ede8bb901051
+		summarizeBy: sum
+		sourceColumn: principal_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outstanding_amount
+		dataType: double
+		lineageTag: b25adff6-eb86-4ba3-9655-6751f15638a5
+		summarizeBy: sum
+		sourceColumn: outstanding_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column interest_rate
+		dataType: double
+		lineageTag: ca0af587-b294-4c3e-8ad0-7bf70e32a8cf
+		summarizeBy: sum
+		sourceColumn: interest_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column term_months
+		dataType: int64
+		formatString: 0
+		lineageTag: 600e4863-6764-4648-be2a-9789f8b3f781
+		summarizeBy: sum
+		sourceColumn: term_months
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_past_due
+		dataType: int64
+		formatString: 0
+		lineageTag: 77df58b9-142b-454c-9a4b-e688cb441cbf
+		summarizeBy: sum
+		sourceColumn: days_past_due
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a91ffe5-5996-493e-baaa-b87f9587b58b
+		summarizeBy: sum
+		sourceColumn: credit_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column loan_status
+		dataType: string
+		lineageTag: 4058790d-2b35-4b3f-8210-fb05ebb3ad93
+		summarizeBy: none
+		sourceColumn: loan_status
+
+		annotation SummarizationSetBy = Automatic
+
+	measure 'Loan Outstanding' = SUM(loans[outstanding_amount])
+		formatString: ₹#,0
+		displayFolder: Credit Risk
+
+	measure '30 Plus DPD Exposure' = CALCULATE([Loan Outstanding], loans[days_past_due] >= 30)
+		formatString: ₹#,0
+		displayFolder: Credit Risk
+
+	measure '30 Plus DPD Ratio' = DIVIDE([30 Plus DPD Exposure], [Loan Outstanding])
+		formatString: 0.0%
+		displayFolder: Credit Risk
+
+	measure '90 Plus DPD Exposure' = CALCULATE([Loan Outstanding], loans[days_past_due] >= 90)
+		formatString: ₹#,0
+		displayFolder: Credit Risk
+
+	measure '90 Plus DPD Ratio' = DIVIDE([90 Plus DPD Exposure], [Loan Outstanding])
+		formatString: 0.0%
+		displayFolder: Credit Risk
+
+	measure 'Average Portfolio Yield' = DIVIDE(AVERAGE(loans[interest_rate]), 100)
+		formatString: 0.00%
+		displayFolder: Credit Risk
+
+	partition loans = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\janak\Downloads\FinTrust-Banking-Intelligence-main\FinTrust-Banking-Intelligence-main\data\raw\loans.csv"),[Delimiter=",", Columns=12, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"loan_id", type text}, {"customer_id", type text}, {"branch_id", type text}, {"loan_type", type text}, {"origination_date", type date}, {"principal_amount", type number}, {"outstanding_amount", type number}, {"interest_rate", type number}, {"term_months", Int64.Type}, {"days_past_due", Int64.Type}, {"credit_score", Int64.Type}, {"loan_status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

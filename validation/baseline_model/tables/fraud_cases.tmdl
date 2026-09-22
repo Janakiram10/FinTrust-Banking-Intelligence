@@ -1,0 +1,86 @@
+table fraud_cases
+	lineageTag: 957cdc8a-ece0-4a46-b654-d084d46928a2
+
+	column case_id
+		dataType: string
+		lineageTag: 83534c5a-baca-4ca1-bd57-9bc7294688cb
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_id
+		dataType: string
+		lineageTag: d9513707-777f-4cb6-9093-c33cc5e7ae9a
+		summarizeBy: none
+		sourceColumn: transaction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column opened_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 55b26d67-bbab-4881-b231-749214406ef0
+		summarizeBy: none
+		sourceColumn: opened_date
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column case_status
+		dataType: string
+		lineageTag: a861e9ef-9977-4967-b87d-159837417450
+		summarizeBy: none
+		sourceColumn: case_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column confirmed_fraud
+		dataType: int64
+		formatString: 0
+		lineageTag: 70a13156-b049-4f16-aa2c-d81202e10377
+		summarizeBy: sum
+		sourceColumn: confirmed_fraud
+
+		annotation SummarizationSetBy = Automatic
+
+	column loss_amount
+		dataType: double
+		lineageTag: 4e570c6b-66c8-46a4-a4c7-9427ba901c5f
+		summarizeBy: sum
+		sourceColumn: loss_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Investigated Cases' = COUNTROWS(fraud_cases)
+		formatString: #,0
+		displayFolder: Investigation
+
+	measure 'Confirmed Fraud Cases' = CALCULATE([Investigated Cases], fraud_cases[confirmed_fraud] = 1)
+		formatString: #,0
+		displayFolder: Investigation
+
+	measure 'Investigation Precision' = DIVIDE([Confirmed Fraud Cases], [Investigated Cases])
+		formatString: 0.0%
+		displayFolder: Investigation
+
+	measure 'Confirmed Fraud Loss' = CALCULATE(SUM(fraud_cases[loss_amount]), fraud_cases[confirmed_fraud] = 1)
+		formatString: ₹#,0
+		displayFolder: Investigation
+
+	partition fraud_cases = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\janak\Downloads\FinTrust-Banking-Intelligence-main\FinTrust-Banking-Intelligence-main\data\raw\fraud_cases.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"case_id", type text}, {"transaction_id", type text}, {"opened_date", type date}, {"case_status", type text}, {"confirmed_fraud", Int64.Type}, {"loss_amount", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

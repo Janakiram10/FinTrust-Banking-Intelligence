@@ -1,0 +1,111 @@
+table accounts
+	lineageTag: 4af18cb7-82f7-435f-9136-314b290dafac
+
+	measure 'Active Deposit Balance' = CALCULATE(SUM(accounts[current_balance]), accounts[status] = "Active")
+		formatString: ₹#,0
+		displayFolder: Deposits
+		lineageTag: c74ad763-6b79-4701-94bb-9d33c1841640
+
+	measure 'Active Accounts' = CALCULATE(DISTINCTCOUNT(accounts[account_id]), accounts[status] = "Active")
+		formatString: #,0
+		displayFolder: Deposits
+		lineageTag: ef31a61d-0687-4fcf-8e24-5cba91a63e36
+
+	measure 'CASA Balance' = CALCULATE([Active Deposit Balance], accounts[account_type] IN {"Current", "Savings", "Salary"})
+		formatString: ₹#,0
+		displayFolder: Deposits
+		lineageTag: 35af56c1-f805-456b-b29f-37644d8d8f97
+
+	measure 'CASA Ratio' = DIVIDE([CASA Balance], [Active Deposit Balance])
+		formatString: 0.0%
+		displayFolder: Deposits
+		lineageTag: a2fd8ab5-579a-401a-afb2-8a919cebd9dc
+
+	column account_id
+		dataType: string
+		isHidden
+		lineageTag: 82903453-8adf-4664-827f-e08c3a3680f4
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		isHidden
+		lineageTag: 7f5170dc-eee1-4da2-a3fe-5903c4a5440c
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column branch_id
+		dataType: string
+		isHidden
+		lineageTag: f5746abf-b72b-4c05-adcd-57d49056fc23
+		summarizeBy: none
+		sourceColumn: branch_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_type
+		dataType: string
+		lineageTag: c3547f22-a073-4454-8bb5-a97cd89000b0
+		summarizeBy: none
+		sourceColumn: account_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column open_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0f7ae8d8-8782-420b-966b-99b129b9a4f2
+		summarizeBy: none
+		sourceColumn: open_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column status
+		dataType: string
+		lineageTag: 235419f1-25b7-4671-a6a0-b75e12f7d9c8
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_balance
+		dataType: double
+		lineageTag: dbc1ac9d-a744-4222-9a86-79c6f598623f
+		summarizeBy: sum
+		sourceColumn: current_balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column interest_rate
+		dataType: double
+		lineageTag: a48abebe-6e38-4524-8e31-2b004355d531
+		summarizeBy: sum
+		sourceColumn: interest_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition accounts = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\janak\Downloads\FinTrust-Banking-Intelligence-main\FinTrust-Banking-Intelligence-main\data\raw\accounts.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"account_id", type text}, {"customer_id", type text}, {"branch_id", type text}, {"account_type", type text}, {"open_date", type date}, {"status", type text}, {"current_balance", type number}, {"interest_rate", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

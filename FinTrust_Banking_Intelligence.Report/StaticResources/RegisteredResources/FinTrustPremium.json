@@ -1,0 +1,31 @@
+{
+  "name": "FinTrust Premium",
+  "dataColors": [
+    "#008C95",
+    "#102A43",
+    "#4D9FCE",
+    "#BC7A19",
+    "#C54646",
+    "#8EA6B8"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#17324D",
+  "tableAccent": "#008C95",
+  "good": "#008C95",
+  "neutral": "#BC7A19",
+  "bad": "#C54646",
+  "textClasses": {
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12
+    },
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 27
+    }
+  }
+}

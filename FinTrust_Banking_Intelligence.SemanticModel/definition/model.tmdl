@@ -1,0 +1,29 @@
+model Model
+	culture: en-IN
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["branches","accounts","cards","customers","fraud_cases","interactions","loan_payments","loans","monthly_balances","transactions"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table branches
+ref table accounts
+ref table cards
+ref table customers
+ref table fraud_cases
+ref table interactions
+ref table loan_payments
+ref table loans
+ref table monthly_balances
+ref table transactions
+ref table Date
+
+ref cultureInfo en-IN
+

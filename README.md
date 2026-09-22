@@ -91,6 +91,20 @@ Generated data is written to `data/raw/`; validation outputs go to `data/quality
 
 Definitions, owners, grains and caveats are documented in [`docs/KPI_CATALOGUE.md`](docs/KPI_CATALOGUE.md).
 
+## Power BI dashboard
+
+The repository includes the editable PBIP source and a validated, portable PBIX with its imported semantic model:
+
+- [`FinTrust_Banking_Intelligence_FINAL.pbix`](FinTrust_Banking_Intelligence_FINAL.pbix) - final six-page report
+- [`FinTrust_Banking_Intelligence.pbip`](FinTrust_Banking_Intelligence.pbip) - editable developer project
+- [`REPORT_GUIDE.md`](REPORT_GUIDE.md) - page intent, data grain, filter behavior and KPI interpretation
+- [`validation/source_validation.json`](validation/source_validation.json) - reproducible KPI and model checks
+- [`validation/DESKTOP_VALIDATION.md`](validation/DESKTOP_VALIDATION.md) - observed Desktop refresh, render and filter tests
+
+The six decision pages are Executive Overview, Credit Risk & Collections, Deposits & Transactions, Fraud & Investigations, Customers & Digital, and Branch Performance. Common Period, Region, Branch and Customer Segment slicers synchronize across pages. The report uses the supplied synthetic source data and clearly separates current-state balances from month-end snapshots.
+
+Validated unfiltered results include 5,000 customers, ₹522.38M latest deposit balance, ₹902.48M loan outstanding, 15.17% 30+ DPD exposure, 5.93% 90+ DPD exposure, 62.21% digital transaction share, 5.32% churn and 96.09% collection efficiency.
+
 ## Reproducibility and governance
 
 - Fixed random seed and explicit scale profiles

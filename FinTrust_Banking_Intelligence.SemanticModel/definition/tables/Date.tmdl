@@ -1,0 +1,80 @@
+table Date
+	lineageTag: 7c95b0c5-616b-4a68-8612-22f7c1c8c64d
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 9a21b10b-6609-4629-95fe-5b9c3e538b8f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: e26de1dc-f89e-4a32-8002-352356451a34
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 873ce441-47fc-4f15-b350-ad1c4a7b4132
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 18b1dcaf-8d9c-496d-8274-92c2022879ac
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month'
+		lineageTag: 6bfddde5-d9da-4587-be2e-2a96ecb110b0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year Month]
+		sortByColumn: 'Year Month Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month Sort'
+		formatString: 0
+		lineageTag: da774d8f-9db6-43f2-addf-887c7095a952
+		summarizeBy: none
+		sourceColumn: [Year Month Sort]
+
+	column Quarter
+		lineageTag: 4be97c79-7607-4921-8b81-e0b142ffa331
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    CALENDAR(DATE(2024, 9, 1), DATE(2026, 8, 31)),
+				    "Year", YEAR([Date]),
+				    "Month Number", MONTH([Date]),
+				    "Month", FORMAT([Date], "MMM"),
+				    "Year Month", FORMAT([Date], "YYYY-MM"),
+				    "Year Month Sort", YEAR([Date]) * 100 + MONTH([Date]),
+				    "Quarter", "Q" & FORMAT([Date], "Q")
+				)
+
+	annotation PBI_Id = 8487efa89e8a4f87af7119e4623185fb
+

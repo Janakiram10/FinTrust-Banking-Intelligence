@@ -9,4 +9,6 @@ data/raw/*.parquet
 data/processed/
 target/
 dbt_packages/
+**/.pbi/
+backups/
 

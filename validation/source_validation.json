@@ -1,0 +1,33 @@
+{
+  "source_kpis": {
+    "customers": 5000,
+    "deposit_balance": 522381122.67,
+    "loan_outstanding": 902482733.03,
+    "dpd30_exposure_ratio_pct": 15.17,
+    "dpd90_exposure_ratio_pct": 5.93,
+    "digital_transaction_share_pct": 62.21,
+    "high_risk_transaction_rate_pct": 0.02,
+    "churn_rate_pct": 5.32,
+    "collection_efficiency_pct": 96.09,
+    "investigation_precision_pct": 16.67
+  },
+  "all_ten_benchmarks_match": true,
+  "rows": {
+    "branches": 24,
+    "customers": 5000,
+    "accounts": 6899,
+    "monthly_balances": 82788,
+    "transactions": 120000,
+    "loans": 2100,
+    "loan_payments": 33740,
+    "cards": 2900,
+    "interactions": 4500,
+    "fraud_cases": 18
+  },
+  "source_sha256": {},
+  "original_measures_preserved": true,
+  "relationships_unchanged_except_serialization": true,
+  "single_direction_unambiguous_graph": true,
+  "visual_count": 108,
+  "desktop_validation": "Final PBIX reopened, refreshed, rendered on six pages, and synchronized Region filter tested in Power BI Desktop"
+}

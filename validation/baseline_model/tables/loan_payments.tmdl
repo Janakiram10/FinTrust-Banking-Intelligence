@@ -1,0 +1,97 @@
+table loan_payments
+	lineageTag: 5c08f5d0-ab2c-4ea3-a1c8-c8e143a1487e
+
+	column payment_id
+		dataType: string
+		lineageTag: 74677f16-bc81-492e-8bf9-90c86349125d
+		summarizeBy: none
+		sourceColumn: payment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column loan_id
+		dataType: string
+		lineageTag: d054baff-94cf-47ff-8a0d-af518b160c28
+		summarizeBy: none
+		sourceColumn: loan_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column instalment_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 47039a3e-d219-471d-983f-93fa58c09577
+		summarizeBy: sum
+		sourceColumn: instalment_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column due_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7baf1825-888a-495a-8bcd-97a23cd596b5
+		summarizeBy: none
+		sourceColumn: due_date
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column scheduled_amount
+		dataType: double
+		lineageTag: ff1f58b2-1535-4641-af9d-6235bb6e5333
+		summarizeBy: sum
+		sourceColumn: scheduled_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column paid_amount
+		dataType: double
+		lineageTag: b9a6e332-93dd-46b2-ba7d-ab47f2f6d8f7
+		summarizeBy: sum
+		sourceColumn: paid_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column was_late
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c65cee2-09b2-42e1-81b0-36830474884b
+		summarizeBy: sum
+		sourceColumn: was_late
+
+		annotation SummarizationSetBy = Automatic
+
+	measure 'Scheduled Collections' = SUM(loan_payments[scheduled_amount])
+		formatString: ₹#,0
+		displayFolder: Collections
+
+	measure 'Collected Amount' = SUM(loan_payments[paid_amount])
+		formatString: ₹#,0
+		displayFolder: Collections
+
+	measure 'Collection Efficiency' = DIVIDE([Collected Amount], [Scheduled Collections])
+		formatString: 0.0%
+		displayFolder: Collections
+
+	measure 'Late Payment Rate' = DIVIDE(CALCULATE(COUNTROWS(loan_payments), loan_payments[was_late] = 1), COUNTROWS(loan_payments))
+		formatString: 0.0%
+		displayFolder: Collections
+
+	partition loan_payments = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\janak\Downloads\FinTrust-Banking-Intelligence-main\FinTrust-Banking-Intelligence-main\data\raw\loan_payments.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"payment_id", type text}, {"loan_id", type text}, {"instalment_number", Int64.Type}, {"due_date", type date}, {"scheduled_amount", type number}, {"paid_amount", type number}, {"was_late", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,81 @@
+table monthly_balances
+	lineageTag: 5aa7f8ac-bcc7-4ba8-a4a3-02872f121a29
+
+	measure 'Deposit Balance Snapshot' = SUM(monthly_balances[ending_balance])
+		formatString: ₹#,0
+		displayFolder: Deposits
+		lineageTag: 924f5da6-47e5-4a5a-8837-a403742112d4
+
+	measure 'Latest Deposit Balance' = CALCULATE([Deposit Balance Snapshot], LASTDATE('Date'[Date]))
+		formatString: ₹#,0
+		displayFolder: Deposits
+		lineageTag: f78e3f1d-999f-46e2-8ed3-63537f9ee82a
+
+	measure 'Deposit Growth' =
+			VAR CurrentBalance = [Deposit Balance Snapshot]
+			VAR PreviousBalance = CALCULATE([Deposit Balance Snapshot], DATEADD('Date'[Date], -1, MONTH))
+			RETURN DIVIDE(CurrentBalance - PreviousBalance, PreviousBalance)
+			formatString: 0.0%
+			displayFolder: Deposits
+		lineageTag: 0e98d963-f130-480d-895f-bc5654268de7
+
+	measure 'Selected Deposit Balance' =
+			VAR LastSnapshot = MAX(monthly_balances[snapshot_date])
+			RETURN CALCULATE([Deposit Balance Snapshot], KEEPFILTERS(monthly_balances[snapshot_date] = LastSnapshot))
+		formatString: ₹#,0,,.00"M"
+		displayFolder: Report Presentation
+		lineageTag: 5efc8b0d-6493-4409-9bcd-cb8b3e05c9af
+
+	column balance_snapshot_id
+		dataType: string
+		isHidden
+		lineageTag: be74e847-1955-48cb-9c70-02e62c028a73
+		summarizeBy: none
+		sourceColumn: balance_snapshot_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshot_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e773e9ed-8421-4176-a56b-5ca56a892134
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column account_id
+		dataType: string
+		isHidden
+		lineageTag: 131489c9-0390-4835-ab42-d61bf25aa9fb
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ending_balance
+		dataType: double
+		lineageTag: b186e46f-814f-4f21-ae1c-79d4b8684724
+		summarizeBy: sum
+		sourceColumn: ending_balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition monthly_balances = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\janak\Downloads\FinTrust-Banking-Intelligence-main\FinTrust-Banking-Intelligence-main\data\raw\monthly_balances.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"balance_snapshot_id", type text}, {"snapshot_date", type date}, {"account_id", type text}, {"ending_balance", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

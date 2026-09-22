@@ -1,0 +1,84 @@
+table cards
+	lineageTag: 83d1270d-9d06-4975-b49b-7ca6bca5d519
+
+	column card_id
+		dataType: string
+		lineageTag: 0bd395b4-56c4-42fe-a30c-fb7c70683985
+		summarizeBy: none
+		sourceColumn: card_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: f66a5668-85a5-4f46-84c2-78a98ab6f9ab
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_type
+		dataType: string
+		lineageTag: 468b05e6-dd7c-4dd6-ba8f-2620ea441510
+		summarizeBy: none
+		sourceColumn: card_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_limit
+		dataType: int64
+		formatString: 0
+		lineageTag: cc875f13-6961-4ef4-b8f9-d09f976e0aa6
+		summarizeBy: sum
+		sourceColumn: credit_limit
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_outstanding
+		dataType: double
+		lineageTag: 333e4a55-dd2f-4568-9f52-0c2d6a70f13e
+		summarizeBy: sum
+		sourceColumn: current_outstanding
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column status
+		dataType: string
+		lineageTag: 8650e4ab-0e82-49f5-9e0b-756670d0c3ae
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	measure 'Active Cards' = CALCULATE(COUNTROWS(cards), cards[status] = "Active")
+		formatString: #,0
+		displayFolder: Cards
+
+	measure 'Card Credit Limit' = SUM(cards[credit_limit])
+		formatString: ₹#,0
+		displayFolder: Cards
+
+	measure 'Card Outstanding' = SUM(cards[current_outstanding])
+		formatString: ₹#,0
+		displayFolder: Cards
+
+	measure 'Card Utilization' = DIVIDE([Card Outstanding], [Card Credit Limit])
+		formatString: 0.0%
+		displayFolder: Cards
+
+	partition cards = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\janak\Downloads\FinTrust-Banking-Intelligence-main\FinTrust-Banking-Intelligence-main\data\raw\cards.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"card_id", type text}, {"customer_id", type text}, {"card_type", type text}, {"credit_limit", Int64.Type}, {"current_outstanding", type number}, {"status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

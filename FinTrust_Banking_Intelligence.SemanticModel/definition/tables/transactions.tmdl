@@ -1,0 +1,143 @@
+table transactions
+	lineageTag: 0b29614a-294e-43be-9fda-120055be98ef
+
+	measure 'Completed Transactions' = CALCULATE(COUNTROWS(transactions), transactions[status] = "Completed")
+		formatString: #,0
+		displayFolder: Transactions
+		lineageTag: 6aa3e7d8-f210-4564-bea0-dd6d68f401bd
+
+	measure 'Completed Transaction Value' = CALCULATE(SUM(transactions[amount]), transactions[status] = "Completed")
+		formatString: ₹#,0
+		displayFolder: Transactions
+		lineageTag: 4ab6125f-bc76-4688-b34c-72e8a7dc0a39
+
+	measure 'Transaction Failure Rate' = DIVIDE(CALCULATE(COUNTROWS(transactions), transactions[status] = "Failed"), COUNTROWS(transactions))
+		formatString: 0.00%
+		displayFolder: Transactions
+		lineageTag: 91f9a53d-8c78-46bd-9475-7410b035188a
+
+	measure 'Digital Transaction Share' = DIVIDE(CALCULATE([Completed Transactions], transactions[channel] IN {"UPI", "Mobile Banking", "Internet Banking"}), [Completed Transactions])
+		formatString: 0.0%
+		displayFolder: Transactions
+		lineageTag: 4ff84073-54fc-4b8a-8380-893f2bb3cf36
+
+	measure 'High Risk Transaction Rate' = DIVIDE(CALCULATE([Completed Transactions], transactions[is_high_risk] = 1), [Completed Transactions])
+		formatString: 0.00%
+		displayFolder: Transaction Risk
+		lineageTag: 990db600-bc4b-49f0-8957-444787b91c73
+
+	column transaction_id
+		dataType: string
+		isHidden
+		lineageTag: 6ea3938c-a46f-4b04-95b9-067b33c5e417
+		summarizeBy: none
+		sourceColumn: transaction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_id
+		dataType: string
+		isHidden
+		lineageTag: dc7094bd-e95f-44d9-96f1-cd4b6183f758
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a3ccf756-087f-4bd3-8e78-af909dba6753
+		summarizeBy: none
+		sourceColumn: transaction_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_type
+		dataType: string
+		lineageTag: b6895fdb-8017-47f9-997f-4c49e4f902e4
+		summarizeBy: none
+		sourceColumn: transaction_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: 2963faf6-7e56-4c59-b664-975e1819b880
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_category
+		dataType: string
+		lineageTag: a2f2cb06-d4f0-4c6d-9c52-bfc7c82c15aa
+		summarizeBy: none
+		sourceColumn: merchant_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		lineageTag: 587e6440-4ab6-49bc-bf69-75145449c57d
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column status
+		dataType: string
+		lineageTag: f1fb91cd-42c5-4b52-a900-c1687353f2db
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_score
+		dataType: double
+		lineageTag: 59f037b5-8b6c-436f-b750-905e9df543b7
+		summarizeBy: sum
+		sourceColumn: risk_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_high_risk
+		dataType: int64
+		formatString: 0
+		lineageTag: 670a9442-7a90-42fc-8ca8-ad8c0614da57
+		summarizeBy: sum
+		sourceColumn: is_high_risk
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Date' =
+			
+			DATE(
+			    YEAR(transactions[transaction_ts]),
+			    MONTH(transactions[transaction_ts]),
+			    DAY(transactions[transaction_ts])
+			)
+		formatString: General Date
+		lineageTag: c1023e78-0125-4df5-9ed0-dfd687726543
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition transactions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\janak\Downloads\FinTrust-Banking-Intelligence-main\FinTrust-Banking-Intelligence-main\data\raw\transactions.csv"),[Delimiter=",", Columns=10, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"transaction_id", type text}, {"account_id", type text}, {"transaction_ts", type datetime}, {"transaction_type", type text}, {"channel", type text}, {"merchant_category", type text}, {"amount", type number}, {"status", type text}, {"risk_score", type number}, {"is_high_risk", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

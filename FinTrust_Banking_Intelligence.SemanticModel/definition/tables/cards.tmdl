@@ -1,0 +1,100 @@
+table cards
+	lineageTag: 83d1270d-9d06-4975-b49b-7ca6bca5d519
+
+	measure 'Active Cards' = CALCULATE(COUNTROWS(cards), cards[status] = "Active")
+		formatString: #,0
+		displayFolder: Cards
+		lineageTag: 659e8cee-6159-4d63-a4d5-8b7fac591622
+
+	measure 'Card Credit Limit' = SUM(cards[credit_limit])
+		formatString: ₹#,0
+		displayFolder: Cards
+		lineageTag: 8169ce42-6493-4051-90d1-f550e1e74800
+
+	measure 'Card Outstanding' = SUM(cards[current_outstanding])
+		formatString: ₹#,0
+		displayFolder: Cards
+		lineageTag: 1a4ff5dc-cd6e-4601-bf62-82f504432e5d
+
+	measure 'Card Utilization' = DIVIDE([Card Outstanding], [Card Credit Limit])
+		formatString: 0.0%
+		displayFolder: Cards
+		lineageTag: ac6fd342-e8ac-4108-b298-953609d95e82
+
+	measure 'Branch Active Cards' = IF(ISCROSSFILTERED(branches), CALCULATE([Active Cards], KEEPFILTERS(TREATAS(VALUES(branches[branch_id]), customers[home_branch_id]))), [Active Cards])
+		formatString: #,0
+		displayFolder: Report Presentation
+		lineageTag: f5c6b0be-6af7-4141-98da-d10d89eaeeaa
+
+	measure 'Branch Card Utilization' = IF(ISCROSSFILTERED(branches), CALCULATE([Card Utilization], KEEPFILTERS(TREATAS(VALUES(branches[branch_id]), customers[home_branch_id]))), [Card Utilization])
+		formatString: 0.00%
+		displayFolder: Report Presentation
+		lineageTag: fc26ef55-426e-4d38-a84b-5b761784ab02
+
+	column card_id
+		dataType: string
+		isHidden
+		lineageTag: 0bd395b4-56c4-42fe-a30c-fb7c70683985
+		summarizeBy: none
+		sourceColumn: card_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		isHidden
+		lineageTag: f66a5668-85a5-4f46-84c2-78a98ab6f9ab
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_type
+		dataType: string
+		lineageTag: 468b05e6-dd7c-4dd6-ba8f-2620ea441510
+		summarizeBy: none
+		sourceColumn: card_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_limit
+		dataType: int64
+		formatString: 0
+		lineageTag: cc875f13-6961-4ef4-b8f9-d09f976e0aa6
+		summarizeBy: sum
+		sourceColumn: credit_limit
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_outstanding
+		dataType: double
+		lineageTag: 333e4a55-dd2f-4568-9f52-0c2d6a70f13e
+		summarizeBy: sum
+		sourceColumn: current_outstanding
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column status
+		dataType: string
+		lineageTag: 8650e4ab-0e82-49f5-9e0b-756670d0c3ae
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cards = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\janak\Downloads\FinTrust-Banking-Intelligence-main\FinTrust-Banking-Intelligence-main\data\raw\cards.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"card_id", type text}, {"customer_id", type text}, {"card_type", type text}, {"credit_limit", Int64.Type}, {"current_outstanding", type number}, {"status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,52 @@
+relationship rel_accounts_branch
+	fromColumn: accounts.branch_id
+	toColumn: branches.branch_id
+
+relationship rel_loans_branch
+	fromColumn: loans.branch_id
+	toColumn: branches.branch_id
+
+relationship rel_balances_account
+	fromColumn: monthly_balances.account_id
+	toColumn: accounts.account_id
+
+relationship rel_transactions_account
+	fromColumn: transactions.account_id
+	toColumn: accounts.account_id
+
+relationship rel_accounts_customer
+	fromColumn: accounts.customer_id
+	toColumn: customers.customer_id
+
+relationship rel_cards_customer
+	fromColumn: cards.customer_id
+	toColumn: customers.customer_id
+
+relationship rel_interactions_customer
+	fromColumn: interactions.customer_id
+	toColumn: customers.customer_id
+
+relationship rel_loans_customer
+	fromColumn: loans.customer_id
+	toColumn: customers.customer_id
+
+relationship rel_fraud_transaction
+	fromColumn: fraud_cases.transaction_id
+	toColumn: transactions.transaction_id
+
+relationship rel_payments_loan
+	fromColumn: loan_payments.loan_id
+	toColumn: loans.loan_id
+
+relationship rel_date_transactions
+	fromColumn: transactions.'Transaction Date'
+	toColumn: Date.Date
+
+relationship rel_date_balances
+	fromColumn: monthly_balances.snapshot_date
+	toColumn: Date.Date
+
+relationship rel_date_payments
+	fromColumn: loan_payments.due_date
+	toColumn: Date.Date
+

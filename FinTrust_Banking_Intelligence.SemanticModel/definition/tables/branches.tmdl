@@ -1,0 +1,93 @@
+table branches
+	lineageTag: 8364b8fe-07aa-4493-a655-0f5f20fbdff2
+
+	measure 'Monthly Operating Cost' = SUM(branches[monthly_operating_cost])
+		formatString: ₹#,0
+		displayFolder: Branch Performance
+		lineageTag: 0e50fc36-8e0b-4b31-8281-080e06e61251
+
+	measure 'Cost per Customer' = DIVIDE([Monthly Operating Cost], [Total Customers])
+		formatString: ₹#,0
+		displayFolder: Branch Performance
+		lineageTag: 43c73771-67e3-4756-b15b-8452a128d0b1
+
+	measure 'Branch Cost per Customer' = DIVIDE([Monthly Operating Cost], [Branch Customers])
+		formatString: ₹#,0
+		displayFolder: Report Presentation
+		lineageTag: 96fd0f4f-4a25-4d43-a03c-365421161f72
+
+	column branch_id
+		dataType: string
+		isHidden
+		lineageTag: 0eaba815-9ff7-4d93-829c-579429902052
+		summarizeBy: none
+		sourceColumn: branch_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column branch_name
+		dataType: string
+		lineageTag: 87215c1e-4aa1-48b6-824b-e7dfe0cd1548
+		summarizeBy: none
+		sourceColumn: branch_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 85845872-03f5-4562-8a9d-1c3c28ee3f6b
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 7edbaa2a-4d4b-4254-88b4-ec8ac92bde0e
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 2d487b4e-670b-4d83-bcea-17e44f519fde
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column opened_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3c807519-4c5c-45f0-9a01-e5cc3ce375dc
+		summarizeBy: none
+		sourceColumn: opened_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column monthly_operating_cost
+		dataType: int64
+		formatString: 0
+		lineageTag: e9333c85-4b8d-426d-8ebe-8f672a775f53
+		summarizeBy: sum
+		sourceColumn: monthly_operating_cost
+
+		annotation SummarizationSetBy = Automatic
+
+	partition branches = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\janak\Downloads\FinTrust-Banking-Intelligence-main\FinTrust-Banking-Intelligence-main\data\raw\branches.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"branch_id", type text}, {"branch_name", type text}, {"city", type text}, {"state", type text}, {"region", type text}, {"opened_date", type date}, {"monthly_operating_cost", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
