@@ -1,0 +1,1 @@
+{"run_id": "a5f3bf0e-388e-40ee-a0b2-773d09080a2c", "start_time": "2026-09-22T04:14:44.427888+00:00", "status": "SUCCESS", "ingestion": {"rows_written": 0, "files_skipped": 10, "batch_id": "20260922T041444Z"}, "silver": {"rows_written": 257969, "tables": 10}, "quality": "PASS", "end_time": "2026-09-22T04:15:26.148126+00:00", "duration_seconds": 41.726}

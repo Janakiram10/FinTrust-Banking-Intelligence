@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "counts": {
+    "customers": {
+      "bronze": 5000,
+      "silver": 5000
+    },
+    "accounts": {
+      "bronze": 6899,
+      "silver": 6899
+    },
+    "transactions": {
+      "bronze": 120000,
+      "silver": 120000
+    },
+    "loans": {
+      "bronze": 2100,
+      "silver": 2100
+    },
+    "loan_payments": {
+      "bronze": 33740,
+      "silver": 33740
+    },
+    "branches": {
+      "bronze": 24,
+      "silver": 24
+    },
+    "cards": {
+      "bronze": 2900,
+      "silver": 2900
+    },
+    "fraud_cases": {
+      "bronze": 18,
+      "silver": 18
+    },
+    "interactions": {
+      "bronze": 4500,
+      "silver": 4500
+    },
+    "monthly_balances": {
+      "bronze": 82788,
+      "silver": 82788
+    }
+  }
+}

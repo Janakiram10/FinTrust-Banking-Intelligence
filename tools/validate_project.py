@@ -1,12 +1,15 @@
 """Read-only source/KPI/model checks. Does not substitute for Desktop validation."""
 from pathlib import Path
-import json, re, hashlib
+import json, re, hashlib, sys
 import pandas as pd
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
 SOURCE=ROOT
 MODEL=ROOT/'FinTrust_Banking_Intelligence.SemanticModel/definition'
 OUT=ROOT/'validation'; OUT.mkdir(exist_ok=True)
 raw_files=list((SOURCE/'data/raw').glob('*.csv'))
+if not raw_files:
+    raw_files=list((SOURCE/'data/source').glob('*.csv'))
 if raw_files:
     d={p.stem:pd.read_csv(p) for p in raw_files}
 else:

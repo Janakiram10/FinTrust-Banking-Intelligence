@@ -1,0 +1,1 @@
+select transaction_id, account_id, transaction_ts, transaction_date, channel, transaction_type, amount, status, is_high_risk, risk_score, risk_band, transaction_year, transaction_month from {{ ref('stg_transactions') }}

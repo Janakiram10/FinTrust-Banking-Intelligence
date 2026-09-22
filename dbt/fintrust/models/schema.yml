@@ -1,17 +1,31 @@
 version: 2
 models:
-  - name: stg_transactions
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: occupation_segment
+        data_tests:
+          - accepted_values:
+              arguments: {values: ['Salaried', 'Self-employed', 'Professional', 'Student', 'Retired']}
+  - name: dim_account
+    columns:
+      - name: account_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - relationships:
+              arguments: {to: "ref('dim_customer')", field: customer_id}
+  - name: fact_transactions
     columns:
       - name: transaction_id
-        tests: [unique, not_null]
+        data_tests: [unique, not_null]
       - name: account_id
-        tests: [not_null]
-      - name: amount
-        tests: [not_null]
-  - name: mart_channel_daily
+        data_tests:
+          - relationships:
+              arguments: {to: "ref('dim_account')", field: account_id}
+  - name: fact_risk
     columns:
-      - name: transaction_date
-        tests: [not_null]
-      - name: channel
-        tests: [not_null]
+      - name: loan_id
+        data_tests: [unique, not_null]
 

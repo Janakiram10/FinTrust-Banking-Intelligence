@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "actual": {
+    "customers": 5000,
+    "loan_outstanding": 902482733.0300004,
+    "dpd30_ratio": 0.15174698074300724,
+    "dpd90_ratio": 0.05930022759584582,
+    "digital_share": 0.6222833333333333,
+    "high_risk_rate": 0.00015,
+    "churn_rate": 0.0532
+  },
+  "baseline": {
+    "customers": 5000,
+    "loan_outstanding": 902482733.03,
+    "dpd30_ratio": 0.1517,
+    "dpd90_ratio": 0.0593,
+    "digital_share": 0.6221,
+    "high_risk_rate": 0.0002,
+    "churn_rate": 0.0532
+  }
+}

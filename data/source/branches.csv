@@ -1,0 +1,25 @@
+branch_id,branch_name,city,state,region,opened_date,monthly_operating_cost
+BR001,Hyderabad 1,Hyderabad,Telangana,South/West,2010-07-06,1888672
+BR002,Bengaluru 2,Bengaluru,Karnataka,South/West,1999-01-19,1473063
+BR003,Chennai 3,Chennai,Tamil Nadu,South/West,2021-10-08,1173083
+BR004,Mumbai 4,Mumbai,Maharashtra,South/West,2000-03-25,2082600
+BR005,Pune 5,Pune,Maharashtra,South/West,2017-06-02,721550
+BR006,Delhi 6,Delhi,Delhi,North/East,2009-04-14,860020
+BR007,Kolkata 7,Kolkata,West Bengal,North/East,2020-10-02,2166792
+BR008,Visakhapatnam 8,Visakhapatnam,Andhra Pradesh,South/West,2006-12-11,2071757
+BR009,Hyderabad 9,Hyderabad,Telangana,South/West,2003-01-31,1733550
+BR010,Bengaluru 10,Bengaluru,Karnataka,South/West,2020-01-21,1770926
+BR011,Chennai 11,Chennai,Tamil Nadu,South/West,2019-05-15,1071374
+BR012,Mumbai 12,Mumbai,Maharashtra,South/West,2016-10-01,2007397
+BR013,Pune 13,Pune,Maharashtra,South/West,2005-06-18,1732118
+BR014,Delhi 14,Delhi,Delhi,North/East,2012-04-15,842718
+BR015,Kolkata 15,Kolkata,West Bengal,North/East,2006-02-12,750282
+BR016,Visakhapatnam 16,Visakhapatnam,Andhra Pradesh,South/West,2003-12-03,2120988
+BR017,Hyderabad 17,Hyderabad,Telangana,South/West,2018-03-07,1991222
+BR018,Bengaluru 18,Bengaluru,Karnataka,South/West,2015-06-21,726901
+BR019,Chennai 19,Chennai,Tamil Nadu,South/West,2016-04-30,1343064
+BR020,Mumbai 20,Mumbai,Maharashtra,South/West,2008-05-29,1392966
+BR021,Pune 21,Pune,Maharashtra,South/West,2003-10-29,1047249
+BR022,Delhi 22,Delhi,Delhi,North/East,2019-07-31,749091
+BR023,Kolkata 23,Kolkata,West Bengal,North/East,2006-07-17,2162139
+BR024,Visakhapatnam 24,Visakhapatnam,Andhra Pradesh,South/West,2008-01-09,2194361

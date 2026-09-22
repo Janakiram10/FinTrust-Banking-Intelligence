@@ -11,4 +11,14 @@ target/
 dbt_packages/
 **/.pbi/
 backups/
+.runtime/
+lakehouse/landing/
+lakehouse/bronze/
+lakehouse/silver/
+lakehouse/silver_parquet/
+lakehouse/serving/
+lakehouse/checkpoints/
+dbt/fintrust/logs/
+dbt/fintrust/target/
+dbt/fintrust/.user.yml
 

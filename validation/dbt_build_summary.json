@@ -1,0 +1,10 @@
+{
+  "run_date": "2026-09-22",
+  "dbt_version": "1.12.5",
+  "adapter": "duckdb 1.9.4",
+  "status": "PASS",
+  "models_built": 11,
+  "tests_passed": 12,
+  "tests_failed": 0,
+  "result": "PASS=23 WARN=0 ERROR=0 SKIP=0 TOTAL=23"
+}

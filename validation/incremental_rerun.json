@@ -1,0 +1,9 @@
+{
+  "run_date": "2026-09-22",
+  "strategy": "SHA-256 source-file checkpoint",
+  "first_run_rows_written": 257969,
+  "second_run_rows_written": 0,
+  "second_run_files_skipped": 10,
+  "duplicate_rows_created": 0,
+  "status": "PASS"
+}

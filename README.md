@@ -17,14 +17,20 @@ flowchart LR
   D[CRM & branches] --> B
   B --> E[Silver / PySpark]
   E --> F[Gold / dbt]
-  F --> G[Synapse-ready SQL]
-  G --> H[Power BI]
+  F --> G[DuckDB SQL serving layer]
+  G --> H[Validated Power BI semantic model]
   I[Airflow] --> B
   I --> E
   I --> F
 ```
 
-The local reference implementation runs without a paid cloud account. Azure Data Lake, Databricks, Delta Lake and Synapse deployment notes are provided separately and are never misrepresented as a live production deployment.
+The executed local implementation uses an ADLS-style lake layout, genuine Delta tables, PySpark, dbt and DuckDB. Azure ADLS and Databricks deployment are documented as credential-blocked rather than presented as live cloud infrastructure.
+
+## Two complementary analytics layers
+
+**Business analytics:** SQL, Python, Power BI, customer analytics, transactions, fraud, credit risk, churn and branch performance.
+
+**Modern analytics engineering:** locally executed Azure-style data lake, PySpark 4, Delta Lake medallion processing, dbt dimensional models and tests, an Airflow DAG, DuckDB serving, incremental checkpoints, quality gates and JSONL monitoring. See [`documentation/TIER3_EXECUTION_EVIDENCE.md`](documentation/TIER3_EXECUTION_EVIDENCE.md) for claim-by-claim evidence.
 
 ## Business scope
 
@@ -42,12 +48,13 @@ The local reference implementation runs without a paid cloud account. Azure Data
 | `src/generate_data.py` | Deterministic multi-table source-data generator |
 | `src/validate_data.py` | Referential, domain and reconciliation checks |
 | `sql/` | Warehouse DDL, transformations and business queries |
-| `pyspark/` | Bronze-to-Silver and Silver-to-Gold Delta pipelines |
+| `lakehouse/pipeline.py` | Executed incremental Bronze Delta and PySpark Silver pipeline |
 | `dbt/fintrust/` | Staging, marts, tests and documentation |
 | `airflow/dags/` | Idempotent daily orchestration DAG |
 | `powerbi/` | Semantic model, measures, page specification and theme |
 | `docs/` | Requirements, data dictionary, KPI catalogue and interview guide |
 | `tests/` | Automated generator and data-quality tests |
+| `documentation/` | Tier-3 evidence, lineage, Azure path and interview guide |
 
 ## Quick start
 
@@ -59,6 +66,17 @@ pip install -r requirements.txt
 python src/generate_data.py --scale demo
 python src/validate_data.py
 pytest -q
+```
+
+Tier-3 local run on Windows requires Java 17 and Hadoop `winutils`; set `JAVA_HOME` and `HADOOP_HOME`, then run:
+
+```bash
+python lakehouse/pipeline.py run
+cd dbt/fintrust
+dbt build --profiles-dir .
+dbt docs generate --profiles-dir .
+cd ../..
+python tools/tier3_validate.py --stage all
 ```
 
 Generated data is written to `data/raw/`; validation outputs go to `data/quality/`. Large generated files are intentionally excluded from Git because they are reproducible.

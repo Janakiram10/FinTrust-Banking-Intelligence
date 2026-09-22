@@ -1,0 +1,7 @@
+fintrust:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../../lakehouse/serving/fintrust.duckdb
+      threads: 4

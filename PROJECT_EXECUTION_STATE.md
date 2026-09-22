@@ -35,7 +35,24 @@ Last updated: 2026-09-22
 
 ## Current task
 
-- Complete. The validated dashboard and project artifacts are published on GitHub.
+- Tier-3 local lakehouse implementation is complete and validated; final Git publication is in progress.
+
+## Tier-3 completed locally
+
+- Loaded 257,969 rows into ten genuine Bronze Delta tables with source, batch and ingestion metadata.
+- Executed PySpark 4.0.1 transformations across all ten tables and wrote genuine Silver Delta outputs.
+- Implemented checksum-based incremental ingestion; the duplicate rerun wrote zero rows and skipped ten unchanged files.
+- Built eleven dbt models in a DuckDB SQL serving layer and passed all twelve dbt tests.
+- Implemented and source-validated an eight-task Airflow DAG with retries, quality gates and reconciliation.
+- Reconciled customer, loan, delinquency, digital, fraud-risk and churn metrics with the Power BI baseline.
+- Added JSONL pipeline monitoring, lineage, Azure deployment path, execution evidence and interview guidance.
+
+## Tier-3 cloud status
+
+- Azure ADLS Gen2: BLOCKED BY CREDENTIALS.
+- Azure Databricks and Databricks SQL: BLOCKED BY CREDENTIALS.
+- Local ADLS-style storage, Delta Lake, PySpark, dbt, DuckDB serving and pipeline validation: IMPLEMENTED + VALIDATED.
+- Airflow DAG: IMPLEMENTED LOCALLY and source/dependency validated; an Airflow scheduler was not started because native Windows is unsupported and Docker is unavailable.
 
 ## Known issue
 
@@ -65,4 +82,4 @@ Last updated: 2026-09-22
 
 ## Final validation status
 
-The final PBIX is working and validated. Repository publication is complete. PDF/PNG dashboard exports are pending because the Windows UI automation target repeatedly lost foreground focus.
+The final PBIX remains working and validated. The Tier-3 local pipeline passes its layer checks, dbt build/tests, idempotent rerun test and KPI reconciliation. PDF/PNG dashboard exports remain pending because the Windows UI automation target repeatedly lost foreground focus.
