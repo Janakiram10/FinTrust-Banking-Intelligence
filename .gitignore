@@ -13,6 +13,7 @@ dbt_packages/
 backups/
 .runtime/
 portfolio/resume/rendered/
+portfolio/job_search/rendered/
 lakehouse/landing/
 lakehouse/bronze/
 lakehouse/silver/
