@@ -11,4 +11,3 @@ The dashboard screenshots demonstrate interactive filtering using the North/East
 Repository: https://github.com/Janakiram10/FinTrust-Banking-Intelligence
 
 #DataAnalytics #DataAnalyst #PowerBI #SQL #Python #BusinessIntelligence #PySpark #dbt
-

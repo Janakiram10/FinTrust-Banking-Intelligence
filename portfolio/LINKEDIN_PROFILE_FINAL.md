@@ -59,4 +59,4 @@ Live dashboard: https://web-production-d29b6.up.railway.app/
 
 ## Launch Post
 
-Use the final copy in [`docs/LINKEDIN_POST.md`](../docs/LINKEDIN_POST.md) after attaching the Executive Overview image and dashboard PDF.
+Use the final copy in [`portfolio/LINKEDIN_FINTRUST_POST.md`](LINKEDIN_FINTRUST_POST.md) after attaching the Executive Overview image and dashboard PDF.

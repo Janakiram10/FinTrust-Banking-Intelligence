@@ -12,6 +12,14 @@ FinTrust is a Data Analyst portfolio project that turns customer, account, trans
 
 > Portfolio disclosure: FinTrust is fictional. All customers, accounts, transactions and outcomes are deterministically generated; no real personal or financial data is used.
 
+## Dashboard Preview
+
+![FinTrust Executive Overview dashboard](assets/dashboard/01_executive_overview.png)
+
+FinTrust is a six-page Power BI banking intelligence solution covering executive performance, credit risk and collections, deposits and transactions, fraud investigations, customers and digital engagement, and branch performance.
+
+[View the complete six-page dashboard portfolio (PDF)](assets/FinTrust_Banking_Intelligence_Dashboard_Portfolio.pdf)
+
 ## Executive Summary
 
 This is not a single CSV connected to a dashboard. It models five operational source domains, preserves event-level grain, applies data-quality controls, builds a dimensional warehouse, and exposes management-ready metrics through a governed semantic layer.
@@ -117,7 +125,7 @@ Generated data is written to `data/raw/`; validation outputs go to `data/quality
 
 Definitions, owners, grains and caveats are documented in [`docs/KPI_CATALOGUE.md`](docs/KPI_CATALOGUE.md).
 
-## Power BI dashboard
+## Power BI Dashboard
 
 The repository includes the editable PBIP source and a validated, portable PBIX with its imported semantic model:
 
@@ -125,18 +133,45 @@ The repository includes the editable PBIP source and a validated, portable PBIX 
 - [`FinTrust_Banking_Intelligence.pbip`](FinTrust_Banking_Intelligence.pbip) - editable developer project
 - [`REPORT_GUIDE.md`](REPORT_GUIDE.md) - page intent, data grain, filter behavior and KPI interpretation
 
-### Dashboard pages
+> Dashboard screenshots demonstrate interactive filtering using the North/East regional view.
 
-| Page | Decision supported |
-|---|---|
-| Executive Overview | Monitor customers, deposits, lending exposure, delinquency and collections |
-| Credit Risk and Collections | Prioritize delinquent exposure and collection interventions |
-| Deposits and Transactions | Track funding trends, transaction channels and digital adoption |
-| Fraud and Investigations | Monitor suspicious activity, investigation precision and losses |
-| Customers and Digital | Understand customer segments, churn and digital engagement |
-| Branch Performance | Compare branch funding, lending risk, customer reach and operating cost |
+### 1. Executive Overview
 
-Recruiter-quality PNG and PDF exports require one final manual Power BI Desktop export because the automated desktop surface is unavailable. The validated PBIX and editable PBIP are included and unchanged.
+Portfolio-level view of customers, deposits, lending exposure, delinquency and collection efficiency.
+
+![Executive Overview](assets/dashboard/01_executive_overview.png)
+
+### 2. Credit Risk & Collections
+
+Analyze lending exposure, delinquency, repayment performance, product concentration and collection efficiency.
+
+![Credit Risk and Collections](assets/dashboard/02_credit_risk_collections.png)
+
+### 3. Deposits & Transactions
+
+Monitor deposit trends, transaction value, channel adoption, digital activity and transaction quality.
+
+![Deposits and Transactions](assets/dashboard/03_deposits_transactions.png)
+
+### 4. Fraud & Investigations
+
+Analyze high-risk transaction signals, investigation workload, confirmed fraud outcomes and financial loss.
+
+![Fraud and Investigations](assets/dashboard/04_fraud_investigations.png)
+
+### 5. Customers & Digital
+
+Analyze customer segments, churn, digital engagement, card activity and retention opportunities.
+
+![Customers and Digital](assets/dashboard/05_customers_digital.png)
+
+### 6. Branch Performance
+
+Compare branch scale, deposits, lending exposure, operating cost and credit quality.
+
+![Branch Performance](assets/dashboard/06_branch_performance.png)
+
+[View the complete six-page dashboard portfolio (PDF)](assets/FinTrust_Banking_Intelligence_Dashboard_Portfolio.pdf)
 
 ## Key Insights and Recommendations
 
