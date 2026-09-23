@@ -6,11 +6,13 @@ Data Analyst | SQL | Python | Power BI | Excel | Data Visualization | Data Model
 
 ## About
 
-I am a Data Analyst with more than two years of experience working with structured operational and geospatial datasets, data validation, quality analysis and reporting.
+I am a Data Analyst with more than two years of experience extracting, cleaning, transforming, validating and analyzing structured operational datasets.
 
-I use SQL, Python, Pandas, Excel, Power BI and PostgreSQL to clean and analyze data, reconcile results, define KPIs and build dashboards that support business decisions. My professional work includes data transformation, business-rule validation, exception analysis and analytical deliverables across mapping and infrastructure datasets.
+I use SQL, Python, Pandas, Excel, PostgreSQL, Power BI and DAX to define KPIs, build dimensional models and create dashboards that turn complex data into business insights. My professional work includes multi-source data preparation, reconciliation, business-rule validation, exception analysis, root-cause investigation and structured reporting.
 
-My portfolio includes FinTrust Banking Intelligence and MediCore Healthcare Analytics. These projects demonstrate banking, customer, fraud, risk, churn, healthcare revenue and patient-flow analysis. I also implemented a local modern analytics pipeline using PySpark, Delta Lake, dbt and DuckDB, with incremental ingestion, automated tests and data-quality controls.
+My flagship portfolio work includes FinTrust Banking Intelligence and MediCore Healthcare Analytics. Together they demonstrate end-to-end banking, customer, fraud, credit-risk, churn, healthcare revenue and patient-flow analysis using SQL, Python and interactive BI. I also implemented local modern analytics workflows using PySpark, Delta Lake, dbt and Airflow DAG design, with incremental processing and automated data-quality controls.
+
+I use Generative AI tools such as ChatGPT and Microsoft Copilot to accelerate SQL/Python troubleshooting, formula development, analytical workflow optimization and documentation while independently validating final logic and outputs.
 
 I am developing toward cloud analytics while keeping public claims precise: the lakehouse implementation is locally validated and cloud-portable, rather than presented as a production Azure deployment.
 
@@ -18,31 +20,31 @@ I am developing toward cloud analytics while keeping public claims precise: the 
 
 ### Senior Associate | Tech Mahindra
 
-- Analyze and validate structured geospatial datasets against defined mapping specifications and business rules, identifying inconsistencies and maintaining data accuracy.
-- Perform quality and consistency checks across road-network features including lanes, crosswalks, intersections, bike lanes and parking areas.
-- Investigate data discrepancies and edge cases, document findings and support correction workflows to maintain reliable mapping datasets.
+- Analyze and validate high-volume structured operational and location-based datasets against defined specifications and business rules, identifying inconsistencies and maintaining accuracy.
+- Execute quality controls and consistency checks across complex data attributes to detect exceptions, incomplete records and conflicting values.
+- Investigate edge cases and root causes, document findings and coordinate correction workflows to maintain reliable analytical datasets.
 
 ### Analyst | Blue Dome Technologies
 
-- Extracted, cleaned, transformed and validated structured roadway and geospatial datasets using Python, Pandas, Excel and GIS tools, producing analysis-ready outputs.
-- Performed data-quality audits and reconciliation across asset attributes, GPS/KML records and source imagery to identify missing, duplicate and inconsistent records.
-- Prepared validated analytical datasets and reporting deliverables while applying defined business rules and quality standards across infrastructure-data workflows.
+- Extracted, cleaned, transformed and validated multi-source structured datasets using Python, Pandas, Excel and GIS tools, producing analysis-ready outputs.
+- Profiled and reconciled asset attributes, GPS/KML records and source imagery to identify missing, duplicate, anomalous and inconsistent records.
+- Applied business-rule validation and quality audits, prepared analytical datasets and structured reports, and coordinated resolution of recurring data exceptions.
 
 ## Priority Skills
 
-Data Analysis; SQL; Microsoft Power BI; Python; Microsoft Excel; Data Visualization; Data Cleaning; Data Modeling; Pandas; DAX; PostgreSQL; Business Analysis; Power Query; NumPy; Data Transformation; Data Validation; EDA; KPI Analysis; Reporting; Git; GitHub; PySpark; Apache Spark; Delta Lake; dbt; Apache Airflow.
+Data Analysis; SQL; Python; Microsoft Excel; Microsoft Power BI; Pandas; Data Cleaning; Data Transformation; Data Validation; EDA; KPI Analysis; Business Analysis; Data Visualization; Dashboard Development; DAX; Power Query; Dimensional Modeling; PostgreSQL; Data Storytelling; Git; GitHub; PySpark; Apache Spark; Delta Lake; dbt; Apache Airflow; Generative AI.
 
 List Apache Airflow only as DAG design and structural validation until scheduler execution evidence is available.
 
 ## FinTrust Banking Intelligence
 
-Analyzed customer, transaction, deposit, lending, fraud, credit-risk, collection and churn data using SQL, Python and validated KPI logic. Built a six-page interactive Power BI dashboard with a dimensional model, DAX measures and decision-focused reporting. Added a local Bronze-Silver-Gold implementation using PySpark and Delta Lake, with 11 dbt models, 12 passing dbt tests, automated quality checks and an eight-task Airflow DAG design.
+Created a unified analytical view of customers, transactions, deposits, lending, fraud, collections, churn and branches so management can examine customer behavior, transaction and funding trends, credit exposure, fraud indicators and portfolio performance. Cleaned, joined, transformed and validated 257,969 records, then used SQL and Python/Pandas to calculate and reconcile KPIs across 5,000 customers and 120,000 transactions. Built a six-page Power BI solution using Power Query, dimensional modeling, DAX, synchronized filters and decision-focused trend and drill-down analysis. Added a local PySpark/Delta Lake Bronze-Silver-Gold pipeline with incremental processing, 11 dbt models, 12 passing dbt tests, 8 repository tests and an eight-task Airflow DAG design.
 
 Repository: https://github.com/Janakiram10/FinTrust-Banking-Intelligence
 
 ## MediCore Healthcare Analytics
 
-Analyzed 500,000 appointments and 300,000 encounters using PostgreSQL, SQL, Python and Pandas. Validated data quality and healthcare KPIs covering revenue, collections, patient flow, no-shows, wait times, satisfaction and readmissions, then built interactive Power BI and Plotly Dash reporting to communicate operational and financial insights.
+Created a centralized view of patient flow, appointments, hospital performance, revenue, collections, patient experience, wait times and readmissions. Integrated, cleaned and validated 500,000 appointments and 300,000 encounters using PostgreSQL, SQL and Python/Pandas, then performed EDA and KPI analysis. Confirmed a 9.81% no-show rate, ₹178.13 Cr billed, ₹111.98 Cr collected, ₹33.01 Cr outstanding, a 62.86% collection rate, 62.18-minute average wait, 74.61 satisfaction and 3.65% readmissions. Built Power BI and Plotly Dash reporting to communicate operational and financial insights.
 
 Repository: https://github.com/Janakiram10/MediCore-Healthcare-Analytics
 

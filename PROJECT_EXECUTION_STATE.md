@@ -74,6 +74,7 @@ Last updated: 2026-09-23
 - Standardized authoritative employment titles as `Analyst | Blue Dome Technologies` and `Senior Associate | Tech Mahindra` across the resume and LinkedIn preparation file.
 - Standardized education as B.Tech Mechanical Engineering, WISTM / Andhra University, completed 2023, GPA 7.19/10; omitted unverified certifications.
 - Regenerated the one-page resume and aligned LinkedIn, GitHub-profile and FinTrust README openings with Data Analyst-first positioning.
+- Expanded the final recruiter assets with end-to-end analytical project narratives, verified MediCore KPIs and restrained Generative AI-assisted productivity language; final outputs remain independently validated.
 
 ## Tier-3 completed locally
 
