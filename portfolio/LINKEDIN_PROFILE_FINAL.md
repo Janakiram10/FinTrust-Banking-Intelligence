@@ -2,13 +2,13 @@
 
 ## Headline
 
-Data Analyst | SQL | Python | Power BI | Excel | Data Visualization | Data Modeling
+Data Analyst | SQL | Python | Power BI | Excel | Data Visualization | Data Modeling | Business Analytics
 
 ## About
 
-I am a Data Analyst with more than two years of experience working with structured datasets, data validation, quality analysis, reporting and geospatial data workflows.
+I am a Data Analyst with more than two years of experience working with structured operational and geospatial datasets, data validation, quality analysis and reporting.
 
-I use SQL, Python, Pandas, Excel and Power BI to clean data, reconcile results, define KPIs and build dashboards that support business decisions. My professional work includes structured mapping and infrastructure datasets, geospatial analysis, business-rule validation, quality reporting and analytical deliverables.
+I use SQL, Python, Pandas, Excel, Power BI and PostgreSQL to clean and analyze data, reconcile results, define KPIs and build dashboards that support business decisions. My professional work includes data transformation, business-rule validation, exception analysis and analytical deliverables across mapping and infrastructure datasets.
 
 My portfolio includes FinTrust Banking Intelligence and MediCore Healthcare Analytics. These projects demonstrate banking, customer, fraud, risk, churn, healthcare revenue and patient-flow analysis. I also implemented a local modern analytics pipeline using PySpark, Delta Lake, dbt and DuckDB, with incremental ingestion, automated tests and data-quality controls.
 
@@ -16,33 +16,33 @@ I am developing toward cloud analytics while keeping public claims precise: the 
 
 ## Experience
 
-### Sr. Associate - Customer Support (Technical Support) | Tech Mahindra
+### Senior Associate | Tech Mahindra
 
-- Analyze and validate structured geospatial and map data against defined mapping specifications and business rules, identifying inconsistencies and maintaining data accuracy.
-- Perform quality checks across road-network features such as lanes, intersections, crosswalks, bike lanes and parking areas to ensure completeness and consistency.
-- Investigate data discrepancies and edge cases, document findings, and coordinate corrections through established quality workflows.
+- Analyze and validate structured geospatial datasets against defined mapping specifications and business rules, identifying inconsistencies and maintaining data accuracy.
+- Perform quality and consistency checks across road-network features including lanes, crosswalks, intersections, bike lanes and parking areas.
+- Investigate data discrepancies and edge cases, document findings and support correction workflows to maintain reliable mapping datasets.
 
-### Technical Support Engineer | BlueDome Technologies
+### Analyst | Blue Dome Technologies
 
-- Extracted, cleaned, validated and analyzed structured roadway and infrastructure datasets using Excel, Python and GIS tools, identifying missing, duplicate and inconsistent records.
-- Processed and reconciled GPS/KML data, spatial attributes and source imagery to maintain accurate asset-level datasets and analytical deliverables.
-- Prepared structured Excel/CSV and geospatial outputs for downstream analysis and reporting while coordinating resolution of data-quality issues.
+- Extracted, cleaned, transformed and validated structured roadway and geospatial datasets using Python, Pandas, Excel and GIS tools, producing analysis-ready outputs.
+- Performed data-quality audits and reconciliation across asset attributes, GPS/KML records and source imagery to identify missing, duplicate and inconsistent records.
+- Prepared validated analytical datasets and reporting deliverables while applying defined business rules and quality standards across infrastructure-data workflows.
 
 ## Priority Skills
 
-Data Analysis; SQL; Python; Microsoft Excel; Microsoft Power BI; Pandas; NumPy; Data Cleaning; Data Validation; Exploratory Data Analysis; KPI Analysis; Business Analysis; Data Visualization; DAX; Power Query; Dimensional Modeling; PostgreSQL; Git; GitHub; ArcGIS Pro; PySpark; Apache Spark; Delta Lake; dbt.
+Data Analysis; SQL; Microsoft Power BI; Python; Microsoft Excel; Data Visualization; Data Cleaning; Data Modeling; Pandas; DAX; PostgreSQL; Business Analysis; Power Query; NumPy; Data Transformation; Data Validation; EDA; KPI Analysis; Reporting; Git; GitHub; PySpark; Apache Spark; Delta Lake; dbt; Apache Airflow.
 
 List Apache Airflow only as DAG design and structural validation until scheduler execution evidence is available.
 
 ## FinTrust Banking Intelligence
 
-Analyzed customer, transaction, deposit, lending, fraud, credit-risk, collection and churn data using SQL, Python and reconciled KPI logic. Built a validated six-page Power BI dashboard with a dimensional model, DAX measures and decision-focused reporting. Added a local Bronze-Silver-Gold implementation using PySpark and Delta Lake, with 11 dbt models, 12 passing dbt tests, automated quality checks and an eight-task Airflow DAG design.
+Analyzed customer, transaction, deposit, lending, fraud, credit-risk, collection and churn data using SQL, Python and validated KPI logic. Built a six-page interactive Power BI dashboard with a dimensional model, DAX measures and decision-focused reporting. Added a local Bronze-Silver-Gold implementation using PySpark and Delta Lake, with 11 dbt models, 12 passing dbt tests, automated quality checks and an eight-task Airflow DAG design.
 
 Repository: https://github.com/Janakiram10/FinTrust-Banking-Intelligence
 
 ## MediCore Healthcare Analytics
 
-Analyzed 500,000 appointments and 300,000 encounters using PostgreSQL, SQL, Python and Pandas. Validated healthcare KPIs covering revenue, collections, patient flow, no-shows, wait times, satisfaction and readmissions, then built interactive Power BI and Plotly Dash reporting to communicate operational and financial insights.
+Analyzed 500,000 appointments and 300,000 encounters using PostgreSQL, SQL, Python and Pandas. Validated data quality and healthcare KPIs covering revenue, collections, patient flow, no-shows, wait times, satisfaction and readmissions, then built interactive Power BI and Plotly Dash reporting to communicate operational and financial insights.
 
 Repository: https://github.com/Janakiram10/MediCore-Healthcare-Analytics
 

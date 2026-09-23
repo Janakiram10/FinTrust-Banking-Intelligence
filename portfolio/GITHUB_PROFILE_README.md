@@ -2,7 +2,7 @@
 
 ## Data Analyst
 
-I use SQL, Python, Excel and Power BI to analyze structured data, validate business metrics and build decision-focused reporting. My flagship banking and healthcare projects demonstrate data cleaning, KPI analysis, dimensional modeling and interactive visualization.
+I use SQL, Python, Excel, Power BI and PostgreSQL to analyze structured data, validate business metrics and build decision-focused reporting. My flagship banking and healthcare projects demonstrate data cleaning, KPI analysis, dimensional modeling and interactive visualization.
 
 ### Core capabilities
 
